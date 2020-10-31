@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Virtuish</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@500&family=Yatra+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XVRYT1Q73E"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XVRYT1Q73E');
+    </script>
+  </head>
+
+  <body>
+    <style>
+      body {
+          font-family: "Roboto", sans-serif;
+          font-size: 17px;
+          background-color: #fdfdfd;
+      }
+      .shadow{
+           box-shadow: 0 4px 2px -2px rgba(0,0,0,0.1);
+      }
+      .btn-danger {
+          color: #fff;
+          background-color: #f00000;
+          border-color: #dc281e;
+      }
+       .masthead {
+                background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url('{% static "splash.jpg" %}');
+                height: auto;
+                padding-bottom: 15px;
+                padding-top: 10px;
+      }
+      .light-btn {
+          background-color: #db9502;
+          color: #000;
+      }
+      .light-btn:hover {
+          background-color: #8f6100;
+          color: #ffff;
+      }
+      .dark-btn {
+          background-color: #8f6100;
+          color: #ffff;
+      }
+      .dark-btn:hover {
+          background-color: #db9502;
+          color: #000;
+      }
+      .btn-primary,.btn-primary:visited {
+        background-color: #1a253b;
+        border-color: #172135;
+      }
+      .btn-primary:hover {
+        background-color: #172135;
+        border-color: #172135;
+      }
+      .btn-primary:active {
+        background-color: #172135;
+        border-color: #172135;
+      }
+      .btn-select,.btn-select:active,.btn-select:visited{
+        background-color: white;
+        color: black;
+      }
+      .btn-select:hover{
+        background-color: #e5e5e5;
+        color: #4c4c4c;
+      }
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+      .contactuszahid{
+        background: #27395e;
+      }
+    </style>
+    <!-- Navigation -->
+    <nav style="background-color: #1a253b" class="navbar fixed-top navbar-expand-lg navbar-dark shadow" id="mainNav">
+      <div class="container-fluid">
+        <a style="font-family: 'Yatra One', cursive;" class="navbar-brand" href="{% url 'home' %}" ><i style="font-size:2rem;" class="fa fa-globe"></i> <span style="font-size:2rem !important;">Virtuish</span></a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item text-black">
+              <a style="font-family: 'Sunflower', sans-serif !important;font-size:20px;" class="nav-link text-black" href="">Most Popular</a>
+            </li>
+            <li class="nav-item text-black">
+              <a style="font-family: 'Sunflower', sans-serif !important;font-size:20px;" class="nav-link text-black" href="">About Us</a>
+            </li>
+            <li class="nav-item text-black">
+              <a style="font-family: 'Sunflower', sans-serif !important;font-size:20px;" class="nav-link text-black" href="">Policy</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <br><br>
+            {% block content %}
+          <!-- Content Goes here -->
+            {% endblock content %}
+    <!-- Footer -->
+    <footer class="py-3 bg-grey">
+              <p class="m-0 text-dark text-center ptfoot">Copyright &copy; Virtuish</p>
+    </footer>
+  </body>
+</html>
