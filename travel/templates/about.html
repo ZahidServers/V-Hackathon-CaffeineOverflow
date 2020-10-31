@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+ {% block content %}
+<style>
+    body {
+        font-family: "Roboto", sans-serif;
+        font-size: 18px;
+        background-color: #fdfdfd;
+    }
+    .head_text{
+      color: white;
+    }
+    .card{
+      box-shadow: 0 16px 48px #E3E7EB;
+    }
+</style>
+<br><br>
+<div class="container">
+  <div class="card mb-4" >
+    <div class="card-body">
+      <h2 class="card-title">About Us</h2>
+      <p class="card-text ">This Web App is created by Mohammed Zahid Imtiyaz Wadiwale. It is made in Django for Submission of Harvard Cs50 Web Capstone Project.
+         It requires Django 2.0.0 and pillow version 5.0.0. It uses Djangos Built in Template System to display Blogs and uses sqlite3 for dbms models including post and comments.
+          Posts are made using Djangos Admin Portal comments are also moderated from there each comment need to get permission of staff or superuser from admin panel before being visible.
+         Along with post images can also be uploaded. Along with post virtual Tour are also given using a popular javascript library known as three.js a nd custom javascript coding a skybox is rendered out of Panorma Images.
+       Panorma Images are also uploaded from Admin Portal. Also it uses Django Default Pagination sytem to limit no of articles per page by 3 on home page.
+     </p>
+    </div>
+  </div>
+</div>
+{% endblock content %}

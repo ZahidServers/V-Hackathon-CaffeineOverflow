@@ -3,7 +3,13 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" type="text/javascript"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/shortcuts/infinite.min.js" type="text/javascript"></script>
  {% load static %}
-
+ <script type="text/javascript">
+   $( function() {
+     $( "#sqsearch" ).autocomplete({
+       source: '{% url 'autocomplete' %}'
+     });
+   });
+ </script>
 <style>
     body {
         font-family: "Roboto", sans-serif;
@@ -65,7 +71,7 @@
                       <center>
                         <h3 style="font-family: 'Yatra One', cursive;" class="site-heading my-4 mt-3 text-white stfh3"> Welcome to Virtuish!</h3>
                         <p style="font-family: 'Sunflower', sans-serif !important;text-shadow:2px 2px black;" class="text-light stcp1">Travel around the whole world for free..! &nbsp</p>
-                        <form class="form" action="" method="GET">
+                        <form class="form" action="{% url 'searchquery'%}" method="GET">
                           <input id="sqsearch" class="rounded-left" style="width:66%;padding:5px 10px;border:0px !important;" type="text" name="q" placeholder="Search for Destination..."><button id="searchzahidbtn" type="submit" style="border-top-left-radius: 0px !important; border-bottom-left-radius: 0px !important;border-top-right-radius: .25rem!important;border-bottom-right-radius: .25rem!important;" class="btn btn-primary"><i class="fa fa-search"></i></button>
                         </form>
                       </center>

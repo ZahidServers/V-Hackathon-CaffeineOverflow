@@ -1,0 +1,115 @@
+{% extends "layout.html" %}
+ {% block content %}
+ <script type="text/javascript">
+   $( function() {
+     $( "#sqsearch" ).autocomplete({
+       source: '{% url 'autocomplete' %}'
+     });
+   });
+ </script>
+ <script>
+   var searchzahid = document.getElementById("sqsearch");
+   searchzahid.addEventListener("keyup", function(event) {
+     if (searchzahid.value!="" && searchzahid.value!=" "){
+         if (event.keyCode === 13) {
+          event.preventDefault();
+          document.getElementById("searchzahidbtn").click();
+         }
+       }
+   });
+ </script>
+<style>
+    body {
+        font-family: "Roboto", sans-serif;
+        font-size: 18px;
+        background-color: #fdfdfd;
+    }
+    .head_text{
+      color: white;
+    }
+    .card{
+      box-shadow: 0 16px 48px #E3E7EB;
+    }
+</style>
+<br><br>
+<div class="container">
+    <form class="form col-11" action="{% url 'searchquery'%}" method="GET">
+      <input id="sqsearch" class="rounded-left" style="width:66%;padding:5px 10px;border:1px solid black;" type="text" value="{{ request.GET.q }}" name="q" placeholder="Search for Destination..."><button id="searchzahidbtn" type="submit" style="border-top-left-radius: 0px !important; border-bottom-left-radius: 0px !important;border-top-right-radius: .25rem!important;border-bottom-right-radius: .25rem!important;" class="btn btn-primary"><i class="fa fa-search"></i></button>
+    </form>
+    <div style="right:180px;" class="dropdown col-1 float-right">
+      <button style="width:180px;border-width:1px !important;border-color:black !important;" class="btn btn-select dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        All
+      </button>
+      <div style="width:180px;" id="dropdownselectzahid" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="?q={{ searched }}">All</a>
+        <a class="dropdown-item" href="?q={{ searched }}&t=Historical">Historical</a>
+        <a class="dropdown-item" href="?q={{ searched }}&t=Industrial">Industrial</a>
+        <a class="dropdown-item" href="?q={{ searched }}&t=Natural">Natural</a>
+      </div>
+    </div>
+  <br>
+  <h2 class="mb-3">You Searched for "{{ searched }}"</h2>
+  {% if aszahid %}
+  <h3 class="mb-3">Did you mean "<a href="?q={{ taszahid }}" style="color: #008B8B !important;">{{ aszahid }}</a>" ?</h3>
+  {% endif %}
+  <div class="row">
+    <!-- Blog Entries Column -->
+    <div class="col-md-8 mt-3 left">
+          {% if notfound %}
+          <h4 class="mb-3"> Sorry No Results Found! Try Searching for another keyword.</h4>
+          {% endif %}
+          {% for post in post_list %}
+          <div class="card mb-4" >
+            <div class="card-body">
+              <h2 class="card-title">{{ post.title }}</h2>
+              <img src="{{ post.img.url }}" class="img-responsive" style="width:100%;height:200px;" alt="">
+              <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
+              <p class="card-text">{{ post.content | slice:":200"  | safe }}</p>
+              <span style="font-size:10px;" class="badge badge-secondary"><i class="fa fa-tag"></i>{{ post.tag_let_one }}</span><br><br>
+              <a href="{% url 'post' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
+              <a href="{% url 'VirtualTour' post.slug  %}" class="btn btn-primary">Take a Virtual Tour &rarr;</a>
+            </div>
+          </div>
+          {% endfor %}
+    </div>
+    {% block sidebar %}
+    {% include 'sidebar.html' %}
+    {% endblock sidebar %}
+    {% if post_list.has_other_pages %}
+    <center>
+      <nav aria-label="Page navigation conatiner">
+        <ul class="pagination justify-content-center">
+          {% if post_list.has_previous %}
+          {% if tag %}
+          <li><a href="?q={{ searched }}&t={{ tag }}&page={{ post_list.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+          {% else %}
+          <li><a href="?q={{ searched }}&page={{ post_list.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+          {% endif %}
+          {% else %}
+            <li><span class="page-link">&laquo; PREV </span></li>
+          {% endif %}
+          {% for i in post_list.paginator.page_range %}
+            {% if post_list.number == i %}
+              <li><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+            {% if tag %}
+              <li><a href="?q={{ searched }}&t={{ tag }}&page={{ i }}" class="page-link">{{ i }}</a></li>
+            {% else %}
+              <li><a href="?q={{ searched }}&page={{ i }}" class="page-link">{{ i }}</a></li>
+            {% endif %}
+            {% endif %}
+          {% endfor %}
+          {% if post_list.has_next %}
+          {% if tag %}
+          <li><a href="?q={{ searched }}&t={{ tag }}&page={{ post_list.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+          {% else %}
+          <li><a href="?q={{ searched }}&page={{ post_list.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+          {% endif %}
+          {% endif %}
+        </ul>
+      </nav>
+    </center>
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}

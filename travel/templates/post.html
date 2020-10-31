@@ -1,0 +1,53 @@
+{% extends 'layout.html' %} {% block content %}
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 card mb-4  mt-3 left  top">
+      <div class="card-body">
+        <h1>{% block title %} {{ post.title }} {% endblock title %}</h1>
+        <img src="{{ post.img.url }}" class="img-responsive" style="width:100%;height:200px;" alt="">
+        <p class=" text-muted">{{ post.author }} | {{ post.created_on }}</p>
+        <p class="card-text ">{{ post.content | safe }}</p>
+        <p><span style="font-size:10px;" class="badge badge-secondary"><i class="fa fa-tag"></i>{{ post.tag_let_one }}</span></p>
+        <a href="{% url 'VirtualTour' post.slug  %}" class="btn btn-primary">Take a Virtual Tour &rarr;</a>
+      </div>
+    </div>
+    {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+    <div class="col-md-8 card mb-4  mt-3 ">
+      <div class="card-body">
+        <!-- comments -->
+        <h2>{{ comments.count }} comments</h2>
+
+        {% for comment in comments %}
+        <div class="comments" style="padding: 10px;">
+          <p class="font-weight-bold">
+            {{ comment.name }}
+            <span class=" text-muted font-weight-normal">
+              {{ comment.created_on }}
+            </span>
+          </p>
+          {{ comment.body | linebreaks }}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-md-8 card mb-4  mt-3 ">
+      <div class="card-body">
+        {% if new_comment %}
+        <div class="alert alert-success" role="alert">
+          Your comment is awaiting moderation
+        </div>
+        {% else %}
+        <h3>Leave a comment</h3>
+        <form method="post" style="margin-top: 1.3em;">
+          {{ comment_form.as_p }}
+          {% csrf_token %}
+          <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+        </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

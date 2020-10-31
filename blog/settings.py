@@ -14,13 +14,13 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+TEMPLATES_DIRS = os.path.join(BASE_DIR,'templates')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ')v%z)zelcfl)su^um6&nf6nfj4z0yx+h6i3$6o8hgy=^n5i(tr'
+SECRET_KEY = 'h_-8^%^f8r+@#fg@twc*ts%lnh@f=!b)jj8es=+ki!4&ljc@mo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ip2geotools',
     'travel',
-    'textblob',
+    'textblob'
 ]
 
 MIDDLEWARE = [
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIRS],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,3 +123,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
